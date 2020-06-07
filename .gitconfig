@@ -1,0 +1,5 @@
+[user]
+	name = dioph
+	email = dioph@protonmail.com
+[core]
+	autocrlf = input
