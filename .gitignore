@@ -3,4 +3,5 @@
 !/.zshrc
 !/.gitconfig
 !/.aliases.sh
-
+!/.config/
+!/.config/lutris/games
