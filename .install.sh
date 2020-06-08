@@ -27,11 +27,13 @@ APT_PACKAGES=(
     clang
     cmake
     dvipng
+    figlet
     g++
     gfortran
     gimp
     git
     latexmk
+    lolcat
     net-tools
     okular
     ssh
@@ -116,12 +118,38 @@ codium --install-extension yzhang.markdown-all-in-one --force
 
 # Desktop & Gnome preferences
 sudo apt install gnome-tweaks gnome-shell-extensions numix-gtk-theme numix-icon-theme-circle
+# install dash to dock
+git clone https://github.com/micheleg/dash-to-dock.git
+cd dash-to-dock/
+make
+make install
+rm -rf ../dash-to-dock
+gnome-extensions enable dash-to-dock@micxgx.gmail.com
+# install walkpaper
+git clone https://github.com/BlinkBP/walkpaper.git
+cd walkpaper/
+make all
+unzip -q walkpaper.zip -d ~/.local/share/gnome-shell/extensions/walkpaper@walkpaper.blinkbp.github.com
+rm -rf ../walkpaper
+gnome-extensions enable walkpaper@walkpaper.blinkbp.github.com
+# install resource monitor
+git clone https://github.com/Ory0n/Resource_Monitor ~/.local/share/gnome-shell/extensions/Resource_Monitor@Ory0n
+gnome-extensions enable Resource_Monitor@Ory0n
+# install workspace matrix
+git clone https://github.com/mzur/gnome-shell-wsmatrix.git
+mv -r gnome-shell-wsmatrix/wsmatrix@martin.zurowietz.de .local/share/gnome-shell/extensions/wsmatrix@martin.zurowietz.de
+rm -rf gnome-shell-wsmatrix
+gnome-extensions enable wsmatrix@martin.zurowietz.de
+# enable user shell themes
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox.desktop']"
+# tweaks > extensions
 gsettings set org.gnome.shell.extensions.desktop-icons show-home false
 gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
+# tweaks > top bar
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface show-battery-percentage true
+# tweaks > appearance
 gsettings set org.gnome.desktop.interface gtk-theme 'Numix'
 gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'
 gsettings set org.gnome.desktop.interface icon-theme 'Numix-Circle'
@@ -151,6 +179,23 @@ dot checkout
 notify "Cleaning apt..."
 sudo apt-get autoremove
 sudo apt-get autoclean
+
+sleep 2
+notify "The gnome shell will be restarted so that new extensions can load properly."
+sleep 3
+
+function sleep_countdown () {
+	i=$@
+	echo "Restarting shell in..."
+	while [ $i -gt 0 ]; do
+		figlet "$i" | lolcat
+		sleep 1
+		let i=i-1
+	done
+}
+
+sleep_countdown 5
+killall -1 gnome-shell
 
 # The End
 notify "Done. Please reboot!"
