@@ -1,0 +1,3 @@
+system:
+  game_path: ~/games
+  prefix_command: gamemoderun
