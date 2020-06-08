@@ -92,16 +92,18 @@ install zsh
 sudo apt install fonts-powerline
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/denysdovhan/spaceship-prompt.git ~/.oh-my-zsh/custom/themes/spaceship-prompt
 ln -s ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
 chsh -s /bin/zsh
 
 # emacs
+notify "Installing emacs..."
 install emacs
 git clone https://github.com/dioph/.emacs.d.git ~/.emacs.d
 
 # python
+notify "Setting up python..."
 sudo apt-get install python3-tk
 sudo apt-get install python3-venv
 
@@ -117,6 +119,7 @@ codium --install-extension James-Yu.latex-workshop --force
 codium --install-extension yzhang.markdown-all-in-one --force
 
 # Desktop & Gnome preferences
+notify "Setting up Gnome Shell..."
 sudo apt install gnome-tweaks gnome-shell-extensions numix-gtk-theme numix-icon-theme-circle
 # install dash to dock
 git clone https://github.com/micheleg/dash-to-dock.git
@@ -157,7 +160,7 @@ gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
     
 # load gnome-terminal profiles preferences
 notify "Loading terminal profiles..."
-dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiels.dconf
+dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
 
 # checkout dotfiles
 # https://www.atlassian.com/git/tutorials/dotfiles
@@ -171,7 +174,7 @@ if [ $? = 0 ]; then
 else
     notify "Backing up pre-existing dotfiles..."
     mkdir -p .config-backup
-    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+    dot checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
 fi
 dot checkout
 
@@ -185,13 +188,13 @@ notify "The gnome shell will be restarted so that new extensions can load proper
 sleep 3
 
 function sleep_countdown () {
-	i=$@
-	echo "Restarting shell in..."
-	while [ $i -gt 0 ]; do
-		figlet "$i" | lolcat
-		sleep 1
-		let i=i-1
-	done
+    i=$@
+    echo "Restarting shell in..."
+    while [ $i -gt 0 ]; do
+	figlet "$i" | lolcat
+	sleep 1
+	let i=i-1
+    done
 }
 
 sleep_countdown 5
