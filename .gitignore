@@ -4,4 +4,7 @@
 !/.gitconfig
 !/.aliases.sh
 !/.config/
-!/.config/lutris/games
+!/.config/lutris/
+!/.config/lutris/**
+!/.install.sh
+!/gnome-terminal-profiles.dconf
