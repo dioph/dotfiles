@@ -104,8 +104,7 @@ git clone https://github.com/dioph/.emacs.d.git ~/.emacs.d
 
 # python
 notify "Setting up python..."
-sudo apt-get install python3-tk
-sudo apt-get install python3-venv
+sudo apt-get install python3-tk python3-venv
 
 # vscodium
 notify "Setting up VSCodium..."
@@ -161,22 +160,6 @@ gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
 # load gnome-terminal profiles preferences
 notify "Loading terminal profiles..."
 dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
-
-# checkout dotfiles
-# https://www.atlassian.com/git/tutorials/dotfiles
-notify "Checking out config..."
-function dot {
-   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
-}
-dot checkout
-if [ $? = 0 ]; then
-    notify "Checked out."
-else
-    notify "Backing up pre-existing dotfiles..."
-    mkdir -p .config-backup
-    dot checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
-fi
-dot checkout
 
 # cleaning apt
 notify "Cleaning apt..."
