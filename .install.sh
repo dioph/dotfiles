@@ -24,6 +24,7 @@ sudo apt upgrade
 # apt packages
 APT_PACKAGES=(
     adb
+    calibre
     clang
     cmake
     dvipng
@@ -33,6 +34,7 @@ APT_PACKAGES=(
     gimp
     git
     latexmk
+    texlive-fonts-extra
     lolcat
     net-tools
     okular
@@ -56,6 +58,10 @@ sudo apt-get install sublime-merge
 # https://www.reddit.com/r/linux4noobs/comments/g7753y/how_to_set_up_ubuntu_2004_for_gaming_tutorial/
 notify "Setting up gaming..."
 # install gpu driver
+which lspci &> /dev/null
+if [ $? = 0 ]; then
+    lspci | grep -i 'vga\|3d\|2d'
+fi
 read -p "Which GPU? [nvidia/amd/intel] " gpu
 if [ ${gpu} = "nvidia" ]; then
     sudo add-apt-repository ppa:graphics-drivers/ppa
@@ -104,7 +110,7 @@ git clone https://github.com/dioph/.emacs.d.git ~/.emacs.d
 
 # python
 notify "Setting up python..."
-sudo apt-get install python3-tk python3-venv
+sudo apt-get install python3-dev python3-tk python3-venv
 
 # vscodium
 notify "Setting up VSCodium..."
@@ -116,6 +122,14 @@ codium --install-extension Equinusocio.vsc-material-theme --force
 codium --install-extension equinusocio.vsc-material-theme-icons --force
 codium --install-extension James-Yu.latex-workshop --force
 codium --install-extension yzhang.markdown-all-in-one --force
+
+# set flameshot as default screenshot tool
+install flameshot
+gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot '[]'
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'flameshot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command '/usr/bin/flameshot gui'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'Print'
 
 # Desktop & Gnome preferences
 notify "Setting up Gnome Shell..."
