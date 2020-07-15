@@ -36,10 +36,10 @@ APT_PACKAGES=(
     latexmk
     texlive-fonts-extra
     lolcat
+    mpv
     net-tools
     okular
     ssh
-    vlc
 )
 
 sudo apt-get install ${APT_PACKAGES}

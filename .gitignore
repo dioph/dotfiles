@@ -5,7 +5,14 @@
 !/.gitconfig
 !/.aliases.sh
 !/.config/
+!/.config/calibre/
+!/.config/calibre/*
 !/.config/lutris/
 !/.config/lutris/**
+!/.config/mpv/
+!/.config/mpv/*
+!/.config/VSCodium/
+!/.config/VSCodium/User/
+!/.config/VSCodium/User/*
 !/.install.sh
 !/gnome-terminal-profiles.dconf
