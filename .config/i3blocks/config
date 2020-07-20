@@ -1,0 +1,42 @@
+align=center
+color=#f3f4f5
+separator=false
+separator_block_width=10
+markup=none
+command=~/.config/i3blocks/i3blocks-contrib/$BLOCK_NAME/$BLOCK_NAME
+
+[mediaplayer]
+command=playerctl metadata --format "{{ artist }} - {{ title }}"
+interval=2
+label= 
+
+[calendar]
+interval=1
+LABEL= 
+DATEFMT=+%a %d.%m %H:%M
+HEIGHT=180
+WIDTH=220
+
+[volume]
+interval=once
+LABEL=🕨 
+signal=10
+
+[bandwidth]
+interval=10
+INTERFACE=wlp6s0
+INLABEL=⭳ 
+OUTLABEL=⭱ 
+
+[battery]
+interval=2
+LABEL=⚡
+
+# [wifi]
+# label=wifi: 
+# INTERFACE=wlp6s0
+# interval=60
+
+[memory]
+label= 
+interval=5
