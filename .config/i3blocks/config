@@ -1,6 +1,5 @@
 align=center
 color=#f3f4f5
-separator=false
 separator_block_width=10
 markup=none
 command=~/.config/i3blocks/i3blocks-contrib/$BLOCK_NAME/$BLOCK_NAME
@@ -32,11 +31,7 @@ OUTLABEL=⭱
 interval=2
 LABEL=⚡
 
-# [wifi]
-# label=wifi: 
-# INTERFACE=wlp6s0
-# interval=60
-
 [memory]
-label= 
 interval=5
+label= 
+

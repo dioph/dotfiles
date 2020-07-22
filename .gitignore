@@ -22,5 +22,7 @@
 !/.config/VSCodium/
 !/.config/VSCodium/User/
 !/.config/VSCodium/User/*
-!/.install.sh
+!/.install_i3.sh
+!/.install_gnome.sh
+!/.set-brightness.sh
 !/gnome-terminal-profiles.dconf

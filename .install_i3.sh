@@ -27,22 +27,75 @@ APT_PACKAGES=(
     calibre
     clang
     cmake
+    cpu-x
     dvipng
     figlet
+    htop
     g++
     gfortran
     gimp
     git
     latexmk
-    texlive-fonts-extra
+    nasm
+    neofetch
     lolcat
     mpv
     net-tools
     okular
+    pdfshuffler
     ssh
+    telegram-desktop
+    texlive-fonts-extra
+    xvfb
+)
+
+i3_PACKAGES=(
+    compton
+    dmenu
+    dunst
+    feh
+    i3lock-fancy
+    i3status
+    playerctl
+    rofi
+    yad
 )
 
 sudo apt-get install ${APT_PACKAGES}
+
+# i3-gaps
+notify "Installing i3-gaps..."
+sudo add-apt-repository ppa:kgilmer/speed-ricer
+sudo apt-get update
+sudo apt-get install i3-gaps
+
+# alacritty
+notify "Installing alacritty..."
+sudo add-apt-repository ppa:mmstick76/alacritty
+sudo apt-get update
+sudo apt-get install alacritty
+
+# i3blocks
+notify "Compiling i3blocks from source..."
+sudo apt-get install dh-autoreconf
+git clone https://github.com/vivien/i3blocks
+cd i3blocks/
+./autogen.sh
+./configure
+make
+sudo make install
+rm -rf ../i3blocks
+
+# i3blocks-contrib
+notify "Cloning i3blocks-contrib github repo..."
+git clone https://github.com/vivien/i3blocks-contrib.git .config/i3blocks/i3blocks-contrib
+
+# moar stuff
+sudo apt-get install ${i3_PACKAGES}
+
+# intel_backlight
+notify "Allow writing in intel_backlight/brightness"
+sudo chmod 666 /sys/class/backlight/intel_backlight/brightness
 
 # sublime-text
 # https://www.sublimetext.com/docs/3/linux_repositories.html
@@ -57,7 +110,7 @@ sudo apt-get install sublime-merge
 # set up ubuntu 20.04 for gaming
 # https://www.reddit.com/r/linux4noobs/comments/g7753y/how_to_set_up_ubuntu_2004_for_gaming_tutorial/
 notify "Setting up gaming..."
-# install gpu driver
+## install gpu driver
 which lspci &> /dev/null
 if [ $? = 0 ]; then
     lspci | grep -i 'vga\|3d\|2d'
@@ -75,18 +128,18 @@ else
     notify "Error: Invalid GPU!"
     exit 1
 fi
-# install wine staging
+## install wine staging
 sudo dpkg --add-architecture i386
 wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
 sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
 sudo apt-get update
 sudo apt-get install --install-recommends wine-staging
 sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386
-# install lutris
+## install lutris
 sudo add-apt-repository ppa:lutris-team/lutris
 sudo apt-get update
 install lutris
-# install steam
+## install steam
 install steam
 notify "Remember to manually enable Gamemode (Steam > Properties > SET LAUNCH OPTIONS > 'gamemoderun %command%' > OK)"
 notify "For Lutris, navigate to Preferences > System Options > Command prefix > 'gamemoderun'"
@@ -123,57 +176,17 @@ codium --install-extension equinusocio.vsc-material-theme-icons --force
 codium --install-extension James-Yu.latex-workshop --force
 codium --install-extension yzhang.markdown-all-in-one --force
 
-# set flameshot as default screenshot tool
-install flameshot
-gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot '[]'
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'flameshot'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command '/usr/bin/flameshot gui'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'Print'
-
-# Desktop & Gnome preferences
-notify "Setting up Gnome Shell..."
-sudo apt install gnome-tweaks gnome-shell-extensions numix-gtk-theme numix-icon-theme-circle
-# install dash to dock
-git clone https://github.com/micheleg/dash-to-dock.git
-cd dash-to-dock/
-make
-make install
-rm -rf ../dash-to-dock
-gnome-extensions enable dash-to-dock@micxgx.gmail.com
-# install walkpaper
-git clone https://github.com/BlinkBP/walkpaper.git
-cd walkpaper/
-make all
-unzip -q walkpaper.zip -d ~/.local/share/gnome-shell/extensions/walkpaper@walkpaper.blinkbp.github.com
-rm -rf ../walkpaper
-gnome-extensions enable walkpaper@walkpaper.blinkbp.github.com
-# install resource monitor
-git clone https://github.com/Ory0n/Resource_Monitor ~/.local/share/gnome-shell/extensions/Resource_Monitor@Ory0n
-gnome-extensions enable Resource_Monitor@Ory0n
-# install workspace matrix
-git clone https://github.com/mzur/gnome-shell-wsmatrix.git
-mv -r gnome-shell-wsmatrix/wsmatrix@martin.zurowietz.de .local/share/gnome-shell/extensions/wsmatrix@martin.zurowietz.de
-rm -rf gnome-shell-wsmatrix
-gnome-extensions enable wsmatrix@martin.zurowietz.de
-# enable user shell themes
-gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox.desktop']"
-# tweaks > extensions
-gsettings set org.gnome.shell.extensions.desktop-icons show-home false
-gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
-# tweaks > top bar
-gsettings set org.gnome.desktop.interface clock-show-weekday true
-gsettings set org.gnome.desktop.interface show-battery-percentage true
-# tweaks > appearance
-gsettings set org.gnome.desktop.interface gtk-theme 'Numix'
-gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'
-gsettings set org.gnome.desktop.interface icon-theme 'Numix-Circle'
-gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
-    
-# load gnome-terminal profiles preferences
-notify "Loading terminal profiles..."
-dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
+# youtube-dl
+# https://github.com/ytdl-org/youtube-dl
+which youtube-dl > /dev/null
+if [ $? = 0 ]; then
+    notify "Removing outdated youtube-dl..."
+    sudo apt-get remove youtube-dl
+fi
+notify "Installing youtube-dl..."
+sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+hash -r
 
 # cleaning apt
 notify "Cleaning apt..."
@@ -181,21 +194,6 @@ sudo apt-get autoremove
 sudo apt-get autoclean
 
 sleep 2
-notify "The gnome shell will be restarted so that new extensions can load properly."
-sleep 3
-
-function sleep_countdown () {
-    i=$@
-    echo "Restarting shell in..."
-    while [ $i -gt 0 ]; do
-	figlet "$i" | lolcat
-	sleep 1
-	let i=i-1
-    done
-}
-
-sleep_countdown 5
-killall -1 gnome-shell
 
 # The End
 notify "Done. Please reboot!"
