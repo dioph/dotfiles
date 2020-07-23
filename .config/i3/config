@@ -3,7 +3,7 @@
 # i3 config file (v4)
 
 # Font for window titles and bar
-font pango:Fira Code 10
+font pango:Cascadia Code 10
 
 # Super key
 set $mod Mod4

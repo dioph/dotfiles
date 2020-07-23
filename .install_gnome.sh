@@ -102,7 +102,7 @@ notify "For Lutris, navigate to Preferences > System Options > Command prefix > 
 # https://github.com/denysdovhan/spaceship-prompt
 notify "Installing Oh My Zsh..."
 install zsh
-sudo apt install fonts-powerline
+sudo apt install fonts-cascadia-code
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions

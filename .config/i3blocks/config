@@ -7,7 +7,7 @@ command=~/.config/i3blocks/i3blocks-contrib/$BLOCK_NAME/$BLOCK_NAME
 [mediaplayer]
 command=playerctl metadata --format "{{ artist }} - {{ title }}"
 interval=2
-label= 
+label=🎜
 
 [calendar]
 interval=1
