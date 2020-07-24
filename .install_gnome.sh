@@ -46,7 +46,6 @@ APT_PACKAGES=(
     ssh
     telegram-desktop
     texlive-fonts-extra
-    xvfb
 )
 
 sudo apt-get install ${APT_PACKAGES}
@@ -103,6 +102,8 @@ notify "For Lutris, navigate to Preferences > System Options > Command prefix > 
 notify "Installing Oh My Zsh..."
 install zsh
 sudo apt install fonts-cascadia-code
+wget -q https://github.com/adam7/delugia-code/releases/download/v2007.01/Delugia.Nerd.Font.ttf
+mv Delugia.Nerd.Font.ttf ~/.local/share/fonts/
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
