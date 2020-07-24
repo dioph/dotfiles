@@ -14,5 +14,5 @@ fi
 
 BrNew=$(( (PNew * BrMax / 100) ))
 
-echo $BrNew > ${BrPath}/brightness
+echo $BrNew | sudo /usr/bin/tee ${BrPath}/brightness > /dev/null
 
