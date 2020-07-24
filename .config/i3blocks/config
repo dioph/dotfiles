@@ -1,37 +1,38 @@
 align=center
 color=#f3f4f5
-separator_block_width=10
-markup=none
+separator_block_width=15
+separator=false
+markup=pango
 command=~/.config/i3blocks/i3blocks-contrib/$BLOCK_NAME/$BLOCK_NAME
 
 [mediaplayer]
 command=playerctl metadata --format "{{ artist }} - {{ title }}"
 interval=2
-label=🎜
+label=<span color="#a9e185"> </span> 
 
 [calendar]
 interval=1
-LABEL= 
+LABEL=<span color="#8be9fd"></span> 
 DATEFMT=+%a %d.%m %H:%M
 HEIGHT=180
 WIDTH=220
 
 [volume]
 interval=once
-LABEL=🕨 
+LABEL=<span color="#ff79c6"></span> 
 signal=10
 
 [bandwidth]
 interval=10
 INTERFACE=wlp6s0
-INLABEL=⭳ 
-OUTLABEL=⭱ 
+INLABEL=<span color="#1793D1"></span> 
+OUTLABEL=<span color="#1793D1"></span> 
 
 [battery]
 interval=2
-LABEL=⚡
+LABEL=<span color="#ffb86c"></span> 
 
 [memory]
 interval=5
-label= 
+label=<span color="#a9e185"></span> 
 
