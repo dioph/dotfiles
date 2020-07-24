@@ -3,7 +3,7 @@
 # i3 config file (v4)
 
 # Font for window titles and bar
-font pango:Cascadia Code 10
+font pango:Delugia Nerd Font,Font Awesome 10
 
 # Super key
 set $mod Mod4
@@ -16,15 +16,30 @@ set $right  ccedilla
 
 # define names for workspaces
 set $ws1    "1:  "
-set $ws2    "2:  "
-set $ws3    "3: 🌐 "
+set $ws2    "2:  "
+set $ws3    "3:  "
 set $ws4    "4:  "
 set $ws5    "5:  "
 set $ws6    "6:  "
-set $ws7    "7: ♫ "
+set $ws7    "7:  "
 set $ws8    "8:  "
-set $ws9    "9: 🎮 "
+set $ws9    "9:  "
 set $ws10   "10:  "
+
+# assign program to workspace
+assign [class="Sublime"]              → $ws2
+assign [class="VSCodium"]             → $ws2
+assign [class="jetbrains-pycharm-ce"] → $ws2
+assign [class="Firefox"]              → $ws3
+assign [class="Evince"]               → $ws5
+assign [class="okular"]		      → $ws5
+assign [class="libreoffice"]          → $ws5
+assign [class="mpv"]                  → $ws6
+assign [class="Spotify"]	      → $ws7
+assign [class="TelegramDesktop"]      → $ws8
+assign [class="discord"]              → $ws8
+assign [class="Steam"]		      → $ws9
+assign [class="Lutris"]		      → $ws9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -162,7 +177,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # manage i3 session
-bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:SpaceMono Nerd Font Medium 11" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit" -B "    Lock " "pkill i3-nagbar && i3lock-fancy -f Source-Sans-Pro" -B "    Reboot " "pkill i3-nagbar && reboot" -B "    Shutdown " "pkill i3-nagbar && shutdown -h now"
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/nagbar.sh
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "  "
@@ -201,7 +216,6 @@ for_window [class="Menu"]                           floating enable
 for_window [class="Nm-connection-editor"]           floating enable
 for_window [class="Software-properties-gtk"]        floating enable
 for_window [class="^Pavucontrol$"] 		    floating enable
-for_window [class="^Arandr$"] 			    floating enable
 for_window [class="^Steam$" title="^Friends List$"] floating enable
 for_window [class="^Steam$" title="Steam - News"]   floating enable
 for_window [class="^Steam$" title=".* - Chat"] 	    floating enable
@@ -216,13 +230,27 @@ for_window [class="Wine"]				floating enable
 for_window [class="Tk"] floating enable
 for_window [class="Matplotlib"] floating enable
 
+set $white  #ffffff
+set $gray1  #dddddd
+set $gray2  #86888c
+set $gray3  #666666
+set $gray4  #5a5a5a
+set $gray5  #292d2e
+set $dark   #262626
+set $darker #212121
+set $black  #0c0c0c
+
+set $red    #d64e4e
+set $green  #229c56
+set $blue   #2b83a6
+
 # class                 border  backgr. text    indicator child_border
-client.focused          #2b83a6 #2b83a6 #ffffff #dddddd   #2b83a6
-client.focused_inactive #212121 #212121 #86888c #292d2e   #5a5a5a
-client.unfocused        #212121 #212121 #86888c #292d2e   #5a5a5a
-client.urgent           #d64e4e #d64e4e #ffffff #d64e4e   #d64e4e
-client.placeholder      #212121 #0c0c0c #ffffff #212121   #262626
-client.background       #212121
+client.focused          $blue   $blue   $white  $gray1    $blue  
+client.focused_inactive $darker $darker $gray2  $gray5    $gray4 
+client.unfocused        $darker $darker $gray2  $gray5    $gray4 
+client.urgent           $red    $red    $white  $red      $red   
+client.placeholder      $darker $black  $white  $darker   $dark  
+client.background       $dark 
 
 # Start i3bar to display a workspace bar
 bar {
@@ -236,15 +264,15 @@ bar {
         # strip_workspace_numbers yes
 	
         colors {
-               background  #212121
-               statusline  #dddddd
-               separator   #666666
+               background  $dark 
+               statusline  $gray1 
+               separator   $gray3 
                # class             border  backgr. text
-               focused_workspace   #2b83a6 #2b83a6 #ffffff
-               active_workspace    #212121 #212121 #ffffff
-               inactive_workspace  #212121 #212121 #86888c
-               urgent_workspace    #d64e4e #d64e4e #ffffff
-               binding_mode        #229c56 #229c56 #ffffff
+               focused_workspace   $blue   $blue   $white 
+               active_workspace    $darker $darker $white 
+               inactive_workspace  $darker $darker $gray2 
+               urgent_workspace    $red    $red    $white 
+               binding_mode        $green  $green  $white 
 	}
 }
 
@@ -254,8 +282,8 @@ gaps inner 4
 gaps outer 2
 
 # startup applications
-exec --no-startup-id xautolock -time 10 -locker "i3lock-fancy -f Source-Sans-Pro"
-exec --no-startup-id nm-applet # NetworkManager
+exec --no-startup-id xautolock -time 10 -locker "/usr/bin/i3lock-fancy -gf Delugia-Nerd-Font -- scrot" -notify 30 -notifier "notify-send 'Locking soon'"
+exec --no-startup-id nm-applet
 exec --no-startup-id pulseaudio --start
-exec --no-startup-id feh --bg-fill ~/Pictures/SteinsWallpaper.png
+exec --no-startup-id ~/.config/i3/wal.sh 1800 &
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
