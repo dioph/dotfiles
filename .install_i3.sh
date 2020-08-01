@@ -95,9 +95,8 @@ sudo apt-get install ${i3_PACKAGES}
 
 # intel_backlight
 notify "Allow writing in intel_backlight/brightness"
-sudo echo "ALL ALL = (ALL) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/brightness" | sudo tee /etc/sudoers.d/90-backlight.conf
-ALL ALL = (ALL) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/brightness
-sudo chmod 440 /etc/sudoers.d/90-backlight.conf
+sudo echo "$USER $HOST = (root) NOPASSWD: /usr/bin/tee" | sudo tee /etc/sudoers.d/backlight
+sudo chmod 440 /etc/sudoers.d/backlight
 
 # sublime-text
 # https://www.sublimetext.com/docs/3/linux_repositories.html

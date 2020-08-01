@@ -7,8 +7,6 @@
 !/.config/
 !/.config/alacritty/
 !/.config/alacritty/*
-!/.config/calibre/
-!/.config/calibre/*
 !/.config/compton/
 !/.config/compton/*
 !/.config/i3/
