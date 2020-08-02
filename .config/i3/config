@@ -73,13 +73,13 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # scrot - root
-bindsym Print exec scrot -e 'mv $f ~/Pictures/'
+bindsym Print exec scrot -e 'mv $f ~/Pictures/screenshots/'
 # scrot & xclip - root
 bindsym Ctrl+Print exec scrot -e 'mv $f /tmp/ && xclip -sel cli -t image/png < /tmp/$f'
 # scrot & gimp - root
 bindsym Shift+Print exec scrot -e 'mv $f /tmp/ && gimp /tmp/$f'
 # scrot - select window or rectangle
-bindsym --release $mod+Print exec scrot -s -e 'mv $f ~/Pictures/'
+bindsym --release $mod+Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/'
 # scrot & xclip - select window or rectangle
 bindsym --release $mod+Ctrl+Print exec scrot -s -e 'mv $f /tmp/ && xclip -sel cli -t image/png < /tmp/$f'
 # scrot & gimp - select window or rectangle
