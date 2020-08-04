@@ -287,3 +287,5 @@ exec --no-startup-id nm-applet
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id ~/.config/i3/wal.sh 1800 &
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
+exec --no-startup-id fcitx -d
+
