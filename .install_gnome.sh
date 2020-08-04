@@ -29,12 +29,13 @@ APT_PACKAGES=(
     cmake
     cpu-x
     dvipng
+    fcitx-mozc
     figlet
-    htop
     g++
     gfortran
     gimp
     git
+    htop
     latexmk
     nasm
     neofetch
