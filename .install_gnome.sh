@@ -104,6 +104,7 @@ notify "Installing Oh My Zsh..."
 install zsh
 sudo apt install fonts-cascadia-code
 wget -q https://github.com/adam7/delugia-code/releases/download/v2007.01/Delugia.Nerd.Font.ttf
+mkdir -p ~/.local/share/fonts
 mv Delugia.Nerd.Font.ttf ~/.local/share/fonts/
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
