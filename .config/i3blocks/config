@@ -1,6 +1,6 @@
 align=center
 color=#f3f4f5
-separator_block_width=15
+separator_block_width=25
 separator=false
 markup=pango
 command=~/.config/i3blocks/i3blocks-contrib/$BLOCK_NAME/$BLOCK_NAME
@@ -8,7 +8,7 @@ command=~/.config/i3blocks/i3blocks-contrib/$BLOCK_NAME/$BLOCK_NAME
 [mediaplayer]
 command=playerctl metadata --format "{{ artist }} - {{ title }}"
 interval=2
-label=<span color="#a9e185"> </span> 
+label=<span color="#a9e185"> </span> 
 
 [calendar]
 interval=1
@@ -24,15 +24,28 @@ signal=10
 
 [bandwidth]
 interval=10
-INTERFACE=wlp6s0
+INTERFACE=wlp0s20f3
 INLABEL=<span color="#1793D1"></span> 
-OUTLABEL=<span color="#1793D1"></span> 
+OUTLABEL=<span color="#1793D1"> </span>
 
 [battery]
 interval=2
-LABEL=<span color="#ffb86c"></span> 
+LABEL=<span color="#ffb86c"> </span>
+
+[gpu-load]
+label=GPU
+interval=10
+
+[cpu_usage]
+interval=2
+label=<span color="#a9e185"> </span>
+DECIMALS=0
+
+[temperature]
+interval=2
+label=<span color="#8be9fd"> </span>
 
 [memory]
 interval=5
-label=<span color="#a9e185"></span> 
+label=<span color="#ff79c6"></span> 
 

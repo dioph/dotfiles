@@ -258,7 +258,7 @@ bar {
 	bindsym button4 nop
 	bindsym button5 nop
 	position top
-	tray_output primary
+	# tray_output primary
 	separator_symbol "|"
         workspace_buttons yes
         # strip_workspace_numbers yes
@@ -278,8 +278,8 @@ bar {
 
 # i3-gaps
 smart_gaps on
-gaps inner 4
-gaps outer 2
+gaps inner 12
+gaps outer 6
 
 # startup applications
 exec --no-startup-id xautolock -time 10 -locker "/usr/bin/i3lock-fancy -gf Delugia-Nerd-Font -- scrot" -notify 30 -notifier "notify-send 'Locking soon'"
