@@ -9,6 +9,8 @@
 !/.config/alacritty/*
 !/.config/compton/
 !/.config/compton/*
+!/.config/dunst/
+!/.config/dunst/*
 !/.config/fcitx/
 !/.config/fcitx/config
 !/.config/i3/
