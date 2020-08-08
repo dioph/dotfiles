@@ -50,14 +50,17 @@ APT_PACKAGES=(
 )
 
 i3_PACKAGES=(
+    acpi
     compton
     dmenu
     dunst
     feh
     i3lock-fancy
     i3status
+    lm-sensors
     playerctl
     rofi
+    sysstat
     xautolock
     yad
 )
@@ -79,7 +82,7 @@ sudo apt-get install alacritty
 # i3blocks
 notify "Compiling i3blocks from source..."
 sudo apt-get install dh-autoreconf
-git clone https://github.com/vivien/i3blocks
+git clone https://github.com/vivien/i3blocks.git
 cd i3blocks/
 ./autogen.sh
 ./configure
