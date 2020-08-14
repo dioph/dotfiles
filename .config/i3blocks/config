@@ -32,13 +32,10 @@ OUTLABEL=<span color="#1793D1"> </span>
 interval=2
 LABEL=<span color="#ffb86c"> </span>
 
-[gpu-load]
-label=GPU
-interval=10
-
 [cpu_usage]
 interval=2
 label=<span color="#a9e185"> </span>
+min_width=: 100%
 DECIMALS=0
 
 [temperature]

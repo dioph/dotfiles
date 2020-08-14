@@ -29,4 +29,7 @@
 !/.install_i3.sh
 !/.install_gnome.sh
 !/.set-brightness.sh
+!/.ubuntu_gnome.sh
+!/.ubuntu_i3.sh
+!/.manjaro_i3.sh
 !/gnome-terminal-profiles.dconf
