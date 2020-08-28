@@ -14,6 +14,13 @@ set $down   k
 set $up     l
 set $right  ccedilla
 
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
 # define names for workspaces
 set $ws1    "1:  "
 set $ws2    "2:  "
@@ -30,7 +37,8 @@ set $ws10   "10:  "
 assign [class="Sublime"]              → $ws2
 assign [class="VSCodium"]             → $ws2
 assign [class="jetbrains-pycharm-ce"] → $ws2
-assign [class="Firefox"]              → $ws3
+assign [class="firefox"]              → $ws3
+assign [class="Pcmanfm"]	      → $ws4
 assign [class="Evince"]               → $ws5
 assign [class="okular"]		      → $ws5
 assign [class="libreoffice"]          → $ws5
@@ -38,6 +46,7 @@ assign [class="mpv"]                  → $ws6
 assign [class="Spotify"]	      → $ws7
 assign [class="TelegramDesktop"]      → $ws8
 assign [class="discord"]              → $ws8
+assign [class="Slack"]		      → $ws8
 assign [class="Steam"]		      → $ws9
 assign [class="Lutris"]		      → $ws9
 
@@ -215,20 +224,25 @@ for_window [class="Yad"]			    floating enable
 for_window [class="Menu"]                           floating enable
 for_window [class="Nm-connection-editor"]           floating enable
 for_window [class="Software-properties-gtk"]        floating enable
-for_window [class="^Pavucontrol$"] 		    floating enable
-for_window [class="^Steam$" title="^Friends List$"] floating enable
-for_window [class="^Steam$" title="Steam - News"]   floating enable
-for_window [class="^Steam$" title=".* - Chat"] 	    floating enable
-for_window [class="^Steam$" title="^Settings$"]     floating enable
-for_window [class="^Steam$" title=".* - event started"] floating enable
-for_window [class="^Steam$" title=".* CD key"]		floating enable
-for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-for_window [class="^Steam$" title="^Screenshot Uploader$"]  floating enable
-for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
-for_window [title="^Steam Keyboard$"] floating enable
+for_window [class="Pavucontrol"] 		    floating enable
+for_window [class="Steam" title="Friends List"] floating enable
+for_window [class="Steam" title="Steam - News"]   floating enable
+for_window [class="Steam" title=".* - Chat"] 	    floating enable
+for_window [class="Steam" title="Settings"]     floating enable
+for_window [class="Steam" title=".* - event started"] floating enable
+for_window [class="Steam" title=".* CD key"]		floating enable
+for_window [class="Steam" title="Steam - Self Updater"] floating enable
+for_window [class="Steam" title="Screenshot Uploader"]  floating enable
+for_window [class="Steam" title="Steam Guard - Computer Authorization Required"] floating enable
+for_window [title="Steam Keyboard"] floating enable
 for_window [class="Wine"]				floating enable
 for_window [class="Tk"] floating enable
 for_window [class="Matplotlib"] floating enable
+for_window [class="Lxappearance"] floating enable
+for_window [class="qt5ct"] floating enable
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
 
 set $white  #ffffff
 set $gray1  #dddddd
@@ -282,10 +296,13 @@ gaps inner 12
 gaps outer 6
 
 # startup applications
-exec --no-startup-id xautolock -time 10 -locker "/usr/bin/i3lock-fancy -gf Delugia-Nerd-Font -- scrot" -notify 30 -notifier "notify-send 'Locking soon'"
+exec --no-startup-id xautolock -time 10 -locker "/usr/bin/i3lock-fancy -gf Delugia-Nerd-Font" -notify 30 -notifier "notify-send 'Locking soon'"
 exec --no-startup-id nm-applet
-exec --no-startup-id pulseaudio --start
+# exec --no-startup-id pulseaudio
+# exec --no-startup-id pa-applet
 exec --no-startup-id ~/.config/i3/wal.sh 1800 &
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
 exec --no-startup-id fcitx -d
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
