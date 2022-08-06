@@ -5,9 +5,11 @@
     "python.dataScience.sendSelectionToInteractiveWindow": true,
     "python.linting.flake8Args": [
         "--count",
-        "--max-complexity=10",
+        "--max-complexity=18",
         "--exclude=\"venv/*,windows/*\"",
-        "--max-line-length=100"
+        "--max-line-length=88",
+        "--ignore=E203, E266, E501, W503",
+        "--select=B,C,E,F,W,T4"
     ],
     "python.venvFolders": [
         "venvs"
@@ -16,5 +18,14 @@
     "python.dataScience.askForKernelRestart": false,
     "editor.fontFamily": "'Delugia Nerd Font', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 13,
-    "editor.fontLigatures": null
+    "editor.fontLigatures": null,
+    "terminal.external.linuxExec": "alacritty",
+    "python.dataScience.alwaysTrustNotebooks": true,
+    "python.formatting.provider": "black",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "notebook.lineNumbers": "on",
+    "jupyter.askForKernelRestart": false,
+    "texlab.server.autoDownload": true
 }

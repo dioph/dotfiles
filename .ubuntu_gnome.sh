@@ -166,4 +166,7 @@ killall -1 gnome-shell
 
 # The End
 notify "Done. Please reboot!"
+
+## mamba create -n data -c pytorch -c conda-forge python=3.8 pytorch torchvision torchaudio cudatoolkit=11.3 tensorflow-gpu autograd bottleneck celerite2 emcee george PyWavelets tqdm xarray dynesty h5py ultranest numba astropy pymc3-ext astroquery lightkurve statsmodels seaborn opencv scikit-image pybind11
+## conda install -c conda-forge mamba
 exit 0

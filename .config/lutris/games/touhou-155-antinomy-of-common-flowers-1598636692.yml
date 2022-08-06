@@ -1,0 +1,6 @@
+game:
+  exe: /home/alpaca/games/touhou/drive_c/Program Files/TH15.5/Touhou155.exe
+  prefix: /home/alpaca/games/touhou
+  working_dir: /home/alpaca/games/touhou/drive_c/Program Files/TH15.5
+system: {}
+wine: {}

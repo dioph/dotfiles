@@ -10,6 +10,11 @@ command=playerctl metadata --format "{{ artist }} - {{ title }}"
 interval=2
 label=<span color="#a9e185"> </span> 
 
+[ytdl-mpv]
+markup=pango
+interval=once
+signal=4
+
 [calendar]
 interval=1
 LABEL=<span color="#8be9fd"></span> 
@@ -17,19 +22,24 @@ DATEFMT=+%a %d.%m %H:%M
 HEIGHT=180
 WIDTH=220
 
+#[mybright]
+#interval=once
+#command=echo "test"
+
 [volume]
 interval=once
 LABEL=<span color="#ff79c6"></span> 
 signal=10
 
 [bandwidth]
-interval=10
+interval=2
 INTERFACE=wlp0s20f3
 INLABEL=<span color="#1793D1"></span> 
 OUTLABEL=<span color="#1793D1"> </span>
 
 [battery]
 interval=2
+BAT_NUMBER=0
 LABEL=<span color="#ffb86c"> </span>
 
 [cpu_usage]
@@ -45,4 +55,8 @@ label=<span color="#8be9fd"> </span>
 [memory]
 interval=5
 label=<span color="#ff79c6"></span> 
+
+[disk]
+label=<span color="#a9e185"> </span>
+interval=30
 

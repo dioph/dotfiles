@@ -49,6 +49,7 @@ sudo apt install acpi compton dmenu dunst feh i3lock-fancy i3status lm-sensors p
 
 # intel_backlight
 notify "Allow writing in intel_backlight/brightness"
+# BE CAREFUL!!! USE VISUDO
 sudo echo "$USER $HOST = (root) NOPASSWD: /usr/bin/tee" | sudo tee /etc/sudoers.d/backlight
 sudo chmod 440 /etc/sudoers.d/backlight
 

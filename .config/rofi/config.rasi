@@ -1,10 +1,18 @@
 /* Rofi config file */
 configuration {
-    lines: 12;
     font: "Font Awesome 14";
     show-icons: true;
-    icon-theme: "Numix-Circle";
-    theme: "oxide";
+    icon-theme: "Papirus";
     display-window: "Window";
     display-drun: "Search";
+}
+
+listview {
+    lines: 12;
+}
+
+@theme "oxide"
+
+element-icon {
+    size: 2ch ;
 }
